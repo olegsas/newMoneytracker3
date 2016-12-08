@@ -408,190 +408,188 @@ function makeYearlyTransactionsTriple(start_Day, last_Day, Year){
 };
 
 function makeYearlyTransactionsSixTimes(start_Day, last_Day, Year){
-            for(i=1; i<oneDayOfUser().len+1; i++){// we check the transaction list
-		        print("i="+i);
-		        print("oneDayOfUser().Period[i] = "+ oneDayOfUser().Period[i]);
-		        print("oneDayOfUser().Rate[i] = "+ oneDayOfUser().Rate[i]);
-		        if(
-		            (oneDayOfUser().Period[i] === "Year") && 
-		            (oneDayOfUser().Rate[i] === 6)){
-		        
-		            var transactionDays = makeSixRandom(start_Day, finish_Day);// 
-		            // we have transactionDays[0] to transactionDays[5];
-		            var transaction_Date1 = new Date(Year, 0, transactionDays[0]);// we convert it into an object format
-		            
-		            var transaction_Date2 = new Date(Year, 0, transactionDays[1]);// we convert it into an object format
-		            
-		            var transaction_Date3 = new Date(Year, 0, transactionDays[2]);// we convert it into an object format
+    for(i=1; i<oneDayOfUser().len+1; i++){// we check the transaction list
+        print("i="+i);
+        print("oneDayOfUser().Period[i] = "+ oneDayOfUser().Period[i]);
+        print("oneDayOfUser().Rate[i] = "+ oneDayOfUser().Rate[i]);
+        if(
+            (oneDayOfUser().Period[i] === "Year") && 
+            (oneDayOfUser().Rate[i] === 6)){
+        
+            var transactionDays = makeSixRandom(start_Day, last_Day);// 
+            // we have transactionDays[0] to transactionDays[5];
+            var transaction_Date1 = new Date(Year, 0, transactionDays[0]);// we convert it into an object format
+            
+            var transaction_Date2 = new Date(Year, 0, transactionDays[1]);// we convert it into an object format
+            
+            var transaction_Date3 = new Date(Year, 0, transactionDays[2]);// we convert it into an object format
 
-		            var transaction_Date4 = new Date(Year, 0, transactionDays[3]);// we convert it into an object format
+            var transaction_Date4 = new Date(Year, 0, transactionDays[3]);// we convert it into an object format
 
-		            var transaction_Date5 = new Date(Year, 0, transactionDays[4]);// we convert it into an object format
+            var transaction_Date5 = new Date(Year, 0, transactionDays[4]);// we convert it into an object format
 
-		            var transaction_Date6 = new Date(Year, 0, transactionDays[5]);// we convert it into an object format
-		            // we have got from transaction_Date1 to transaction_Date6
+            var transaction_Date6 = new Date(Year, 0, transactionDays[5]);// we convert it into an object format
+            // we have got from transaction_Date1 to transaction_Date6
 
-		            print("@@Full transaction date1 is"+transaction_Date1);
-		            print("@@Full transaction date2 is"+transaction_Date2);
-		            print("@@Full transaction date3 is"+transaction_Date3);
-		            print("@@Full transaction date4 is"+transaction_Date4);
-		            print("@@Full transaction date5 is"+transaction_Date5);
-		            print("@@Full transaction date6 is"+transaction_Date6);
+            print("@@Full transaction date1 is"+transaction_Date1);
+            print("@@Full transaction date2 is"+transaction_Date2);
+            print("@@Full transaction date3 is"+transaction_Date3);
+            print("@@Full transaction date4 is"+transaction_Date4);
+            print("@@Full transaction date5 is"+transaction_Date5);
+            print("@@Full transaction date6 is"+transaction_Date6);
 
-		            var transactionAmount1 = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount 
-		            var transactionAmount2 = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount
-		            var transactionAmount3 = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount
-		            var transactionAmount4 = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount
-		            var transactionAmount5 = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount
-		            var transactionAmount6 = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount
-		            // make a monthly transaction, we need to call random day
-		            var Number_of_the_name_of_transaction1 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
-		            var Number_of_the_name_of_transaction2 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
-		            var Number_of_the_name_of_transaction3 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
-		            var Number_of_the_name_of_transaction4 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
-		            var Number_of_the_name_of_transaction5 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
-		            var Number_of_the_name_of_transaction6 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
-		            // Math.random()<1 that`s why name_of_transactions<NUMBER_OF_CATEGORY_NAMES
-		            var operationName =  oneDayOfUser().OperationName[i]
-		            var transactionNameH = db.names.find({"transaction":oneDayOfUser().OperationName[i]},{"names":1,_id:0}).toArray();
-		            // we have an object from the cursor with transactions names of the operation
-		            print("transactionName array - " + transactionNameH[0].names);
-		            var transactionNameOnly1 = transactionNameH[0].names[Number_of_the_name_of_transaction1];
-		            var transactionNameOnly2 = transactionNameH[0].names[Number_of_the_name_of_transaction2];
-		            var transactionNameOnly3 = transactionNameH[0].names[Number_of_the_name_of_transaction3];
-		            var transactionNameOnly4 = transactionNameH[0].names[Number_of_the_name_of_transaction4];
-		            var transactionNameOnly5 = transactionNameH[0].names[Number_of_the_name_of_transaction5];
-		            var transactionNameOnly6 = transactionNameH[0].names[Number_of_the_name_of_transaction6];
-		            print("name of any transaction1 = "+ transactionNameOnly1);
-		            print("name of any transaction2 = "+ transactionNameOnly2);
-		            print("name of any transaction3 = "+ transactionNameOnly3);
-		            print("name of any transaction4 = "+ transactionNameOnly4);
-		            print("name of any transaction5 = "+ transactionNameOnly5);
-		            print("name of any transaction6 = "+ transactionNameOnly6);
+            var transactionAmount1 = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount 
+            var transactionAmount2 = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount
+            var transactionAmount3 = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount
+            var transactionAmount4 = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount
+            var transactionAmount5 = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount
+            var transactionAmount6 = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount
+            // make a monthly transaction, we need to call random day
+            var Number_of_the_name_of_transaction1 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
+            var Number_of_the_name_of_transaction2 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
+            var Number_of_the_name_of_transaction3 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
+            var Number_of_the_name_of_transaction4 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
+            var Number_of_the_name_of_transaction5 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
+            var Number_of_the_name_of_transaction6 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
+            // Math.random()<1 that`s why name_of_transactions<NUMBER_OF_CATEGORY_NAMES
+            var operationName =  oneDayOfUser().OperationName[i]
+            var transactionNameH = db.names.find({"transaction":oneDayOfUser().OperationName[i]},{"names":1,_id:0}).toArray();
+            // we have an object from the cursor with transactions names of the operation
+            print("transactionName array - " + transactionNameH[0].names);
+            var transactionNameOnly1 = transactionNameH[0].names[Number_of_the_name_of_transaction1];
+            var transactionNameOnly2 = transactionNameH[0].names[Number_of_the_name_of_transaction2];
+            var transactionNameOnly3 = transactionNameH[0].names[Number_of_the_name_of_transaction3];
+            var transactionNameOnly4 = transactionNameH[0].names[Number_of_the_name_of_transaction4];
+            var transactionNameOnly5 = transactionNameH[0].names[Number_of_the_name_of_transaction5];
+            var transactionNameOnly6 = transactionNameH[0].names[Number_of_the_name_of_transaction6];
+            print("name of any transaction1 = "+ transactionNameOnly1);
+            print("name of any transaction2 = "+ transactionNameOnly2);
+            print("name of any transaction3 = "+ transactionNameOnly3);
+            print("name of any transaction4 = "+ transactionNameOnly4);
+            print("name of any transaction5 = "+ transactionNameOnly5);
+            print("name of any transaction6 = "+ transactionNameOnly6);
 
-		            var transactionType = oneDayOfUser().Type[i];
-		            var transactionCurrency = oneDayOfUser().Currency[i];
-		            var transactionAccount = oneDayOfUser().Account[i];
-		            /*=============================*/
-		            // we have
-		            // transactionNameOnly1 - the name of the transaction
-		            // transactionNameOnly2
-		            // operationName - the name of operation the category of transaction
-		            // transaction_Date1 - the day of the transaction
-		            // transaction_Date2
-		            // Month, Year - from the arguments of the function
-		            // Question - have I make the variables like var Month = Month?
-		            // transactionType - the type of the transaction
-		            // transactionAmount1 - the amount of the transaction
-		            // transactionAmount2
-		            // transactionCurrency - the currency of the transaction
-		            // transactionAccount - the account for the transaction
+            var transactionType = oneDayOfUser().Type[i];
+            var transactionCurrency = oneDayOfUser().Currency[i];
+            var transactionAccount = oneDayOfUser().Account[i];
+            /*=============================*/
+            // we have
+            // transactionNameOnly1 - the name of the transaction
+            // transactionNameOnly2
+            // operationName - the name of operation the category of transaction
+            // transaction_Date1 - the day of the transaction
+            // transaction_Date2
+            // Month, Year - from the arguments of the function
+            // Question - have I make the variables like var Month = Month?
+            // transactionType - the type of the transaction
+            // transactionAmount1 - the amount of the transaction
+            // transactionAmount2
+            // transactionCurrency - the currency of the transaction
+            // transactionAccount - the account for the transaction
 
-		            
-		            if(transaction_Date1 >= DATE_OF_DENOMINATION){
-		                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
-		                    WriteTransaction(transaction_Date1,transactionType, operationName, transactionNameOnly1, 
-		                             transactionAmount1, transactionCurrency, transactionAccount)
-		                }
-		            }
+            
+            if(transaction_Date1 >= DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date1,transactionType, operationName, transactionNameOnly1, 
+                             transactionAmount1, transactionCurrency, transactionAccount)
+                }
+            }
 
-		            if(transaction_Date1 < DATE_OF_DENOMINATION){
-		                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
-		                    WriteTransaction(transaction_Date1,transactionType, operationName, transactionNameOnly1, 
-		                             transactionAmount1, transactionCurrency, transactionAccount)
-		                }
-		            }
-		            // this 2 if-conditions checks if the denomination time, and choose the correct currency of the operation
-		            // use all this variables);//we write a transaction and only we need to give a random name for it
+            if(transaction_Date1 < DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date1,transactionType, operationName, transactionNameOnly1, 
+                             transactionAmount1, transactionCurrency, transactionAccount)
+                }
+            }
+            // this 2 if-conditions checks if the denomination time, and choose the correct currency of the operation
+            // use all this variables);//we write a transaction and only we need to give a random name for it
 
-		          	if(transaction_Date2 >= DATE_OF_DENOMINATION){
-		                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
-		                    WriteTransaction(transaction_Date2,transactionType, operationName, transactionNameOnly2, 
-		                             transactionAmount2, transactionCurrency, transactionAccount)
-		                }
-		            }
+          	if(transaction_Date2 >= DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date2,transactionType, operationName, transactionNameOnly2, 
+                             transactionAmount2, transactionCurrency, transactionAccount)
+                }
+            }
 
-		            if(transaction_Date2 < DATE_OF_DENOMINATION){
-		                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
-		                    WriteTransaction(transaction_Date2,transactionType, operationName, transactionNameOnly2, 
-		                             transactionAmount2, transactionCurrency, transactionAccount)
-		                }
-		            } 
+            if(transaction_Date2 < DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date2,transactionType, operationName, transactionNameOnly2, 
+                             transactionAmount2, transactionCurrency, transactionAccount)
+                }
+            } 
 
-		            // this 2 if-conditions checks if the denomination time, and choose the correct currency of the operation
-		            // use all this variables);//we write a transaction and only we need to give a random name for it
+            // this 2 if-conditions checks if the denomination time, and choose the correct currency of the operation
+            // use all this variables);//we write a transaction and only we need to give a random name for it
 
-		            if(transaction_Date3 >= DATE_OF_DENOMINATION){
-		                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
-		                    WriteTransaction(transaction_Date3,transactionType, operationName, transactionNameOnly3, 
-		                             transactionAmount3, transactionCurrency, transactionAccount)
-		                }
-		            }
+            if(transaction_Date3 >= DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date3,transactionType, operationName, transactionNameOnly3, 
+                             transactionAmount3, transactionCurrency, transactionAccount)
+                }
+            }
 
-		            if(transaction_Date3 < DATE_OF_DENOMINATION){
-		                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
-		                    WriteTransaction(transaction_Date3,transactionType, operationName, transactionNameOnly3, 
-		                             transactionAmount3, transactionCurrency, transactionAccount)
-		                }
-		            } 
+            if(transaction_Date3 < DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date3,transactionType, operationName, transactionNameOnly3, 
+                             transactionAmount3, transactionCurrency, transactionAccount)
+                }
+            } 
 
-		            // this 2 if-conditions checks if the denomination time, and choose the correct currency of the operation
-		            // use all this variables);//we write a transaction and only we need to give a random name for it
+            // this 2 if-conditions checks if the denomination time, and choose the correct currency of the operation
+            // use all this variables);//we write a transaction and only we need to give a random name for it
 
-		            if(transaction_Date4 >= DATE_OF_DENOMINATION){
-		                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
-		                    WriteTransaction(transaction_Date4,transactionType, operationName, transactionNameOnly4, 
-		                             transactionAmount4, transactionCurrency, transactionAccount)
-		                }
-		            }
+            if(transaction_Date4 >= DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date4,transactionType, operationName, transactionNameOnly4, 
+                             transactionAmount4, transactionCurrency, transactionAccount)
+                }
+            }
 
-		            if(transaction_Date4 < DATE_OF_DENOMINATION){
-		                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
-		                    WriteTransaction(transaction_Date4,transactionType, operationName, transactionNameOnly4, 
-		                             transactionAmount4, transactionCurrency, transactionAccount)
-		                }
-		            } 
+            if(transaction_Date4 < DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date4,transactionType, operationName, transactionNameOnly4, 
+                             transactionAmount4, transactionCurrency, transactionAccount)
+                }
+            } 
 
-		            // this 2 if-conditions checks if the denomination time, and choose the correct currency of the operation
-		            // use all this variables);//we write a transaction and only we need to give a random name for it
+            // this 2 if-conditions checks if the denomination time, and choose the correct currency of the operation
+            // use all this variables);//we write a transaction and only we need to give a random name for it
 
-		            if(transaction_Date5 >= DATE_OF_DENOMINATION){
-		                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
-		                    WriteTransaction(transaction_Date5,transactionType, operationName, transactionNameOnly5, 
-		                             transactionAmount5, transactionCurrency, transactionAccount)
-		                }
-		            }
+            if(transaction_Date5 >= DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date5,transactionType, operationName, transactionNameOnly5, 
+                             transactionAmount5, transactionCurrency, transactionAccount)
+                }
+            }
 
-		            if(transaction_Date5 < DATE_OF_DENOMINATION){
-		                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
-		                    WriteTransaction(transaction_Date5,transactionType, operationName, transactionNameOnly5, 
-		                             transactionAmount5, transactionCurrency, transactionAccount)
-		                }
-		            } 
+            if(transaction_Date5 < DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date5,transactionType, operationName, transactionNameOnly5, 
+                             transactionAmount5, transactionCurrency, transactionAccount)
+                }
+            } 
 
-		            // this 2 if-conditions checks if the denomination time, and choose the correct currency of the operation
-		            // use all this variables);//we write a transaction and only we need to give a random name for it
+            // this 2 if-conditions checks if the denomination time, and choose the correct currency of the operation
+            // use all this variables);//we write a transaction and only we need to give a random name for it
 
-		            if(transaction_Date6 >= DATE_OF_DENOMINATION){
-		                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
-		                    WriteTransaction(transaction_Date6,transactionType, operationName, transactionNameOnly6, 
-		                             transactionAmount6, transactionCurrency, transactionAccount)
-		                }
-		            }
+            if(transaction_Date6 >= DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date6,transactionType, operationName, transactionNameOnly6, 
+                             transactionAmount6, transactionCurrency, transactionAccount)
+                }
+            }
 
-		            if(transaction_Date6 < DATE_OF_DENOMINATION){
-		                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
-		                    WriteTransaction(transaction_Date6,transactionType, operationName, transactionNameOnly6, 
-		                             transactionAmount6, transactionCurrency, transactionAccount)
-		                }
-		            } 
+            if(transaction_Date6 < DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date6,transactionType, operationName, transactionNameOnly6, 
+                             transactionAmount6, transactionCurrency, transactionAccount)
+                }
+            } 
 
-		            // this 2 if-conditions checks if the denomination time, and choose the correct currency of the operation
-		            // use all this variables);//we write a transaction and only we need to give a random name for it
-				}
-    		}
-}
-
+            // this 2 if-conditions checks if the denomination time, and choose the correct currency of the operation
+            // use all this variables);//we write a transaction and only we need to give a random name for it
+		}
+	}
 };
 
 function runYearlyThreeAndSix(startDate, finishDate){// global function runs transaction generation
@@ -677,5 +675,5 @@ function runYearlyThreeAndSix(startDate, finishDate){// global function runs tra
 
 var thisDATE = standartDate("1/6/2016");
 print("plainDays 2010 - "+toPlainDays(thisDATE.getDate(), thisDATE.getMonth(), thisDATE.getFullYear()));
-runYearlyThreeAndSix("1/1/2010", "20/8/2016");//start date and final date - in my task 2016
+runYearlyThreeAndSix("1/1/2010", "20/5/2012");//start date and final date - in my task 2016
 
