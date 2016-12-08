@@ -377,6 +377,10 @@ function DaysInYear(Year){
     return SumDay;
 }
 
+function toPlainDays(anyDATA){//returns tow many days between the 1-st January and the anyDATA
+
+}
+
 function makeYearlyTransactionsTriple(start_Day, last_Day, start_Year){
 
 };
@@ -439,9 +443,11 @@ function runYearlyThreeAndSix(startDate, finishDate){// global function runs tra
         print("##cycleDATEfinish - " + cycleDATEfinish);
 
         if(cycleDATEfinish > finishDATE){
-            makeYearlyTransactionsTriple(cycleDayFirst, /*finishDATE.getDate(),*/ cycleYear);
-            makeYearlyTransactionsSixTimes(cycleDayFirst, /*finishDATE.getDate(),*/ cycleYear);
+            makeYearlyTransactionsTriple(cycleDayFirst, toPlainDays(finishDATE), cycleYear);
+            makeYearlyTransactionsSixTimes(cycleDayFirst, toPlainDays(finishDATE), cycleYear);
             //we are in the last short month
+            //toPlainDays(anyDATA) returns how many days are between the 1-st January
+            //and the anyDATA
         }
         else{
             makeYearlyTransactionsTriple(cycleDayFirst, cycle_day_in_year, cycleYear);
