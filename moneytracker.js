@@ -1,6 +1,7 @@
 // We write the constants here
 var NUMBER_OF_CATEGORY_NAMES = 4;//how many names are in one category
 var DATE_OF_DENOMINATION = new Date("2016-07-01");//the date of denomination, the constants
+var WEEK = 7;//days in a week
 
 function randomUsd(min, max){
     var minCent = min*100;
@@ -310,7 +311,7 @@ function runMonthlyOneAndTwice(startDate, finishDate){// global function runs tr
     var startDATE = standartDate(startDate);
     print("##startDATE-"+startDATE);
     
-    finishDATE = standartDate(finishDate);//standart Data objects
+    var finishDATE = standartDate(finishDate);//standart Data objects
     var start_Day = startDATE.getDate();
     print("##start_Day - "+ start_Day);
     var start_Month = startDATE.getMonth();// month is in range 0...11
@@ -715,11 +716,19 @@ function makeYearlyTransactionsSixTimes(start_Day, last_Day, Year){
 	}
 };
 
+function makeWeeklyTransactions(start_Day, last_Day, start_Month, start_Year){
+
+}
+
+function makeWeeklyTransactionsTriple(start_Day, last_Day, start_Month, start_Year){
+
+}
+
 function runYearlyThreeAndSix(startDate, finishDate){// global function runs transaction generation
     var startDATE = standartDate(startDate);
     print("##startDATE-"+startDATE);
     
-    finishDATE = standartDate(finishDate);//standart Data objects
+    var finishDATE = standartDate(finishDate);//standart Data objects
     var start_Day = startDATE.getDate();
     print("##finishDATE - "+finishDATE);
     print("##start_Day - "+ start_Day);
@@ -728,7 +737,6 @@ function runYearlyThreeAndSix(startDate, finishDate){// global function runs tra
     var start_Year = startDATE.getFullYear();
     print("##start_Year - "+start_Year);
 
-    //print("##DaysInYear 2010 - "+DaysInYear(2010));
 
     var last_Day = DaysInYear(start_Year);// it will be 365 or 366
 
@@ -794,9 +802,31 @@ function runYearlyThreeAndSix(startDate, finishDate){// global function runs tra
     }while(cycleDATEfinish < finishDATE);
 }
 
+function runweeklyOneAndThree(startDate, finishDate){// global function runs transaction generation
+    var startDATE = standartDate(startDate);
+    print("##startDATE-"+startDATE);
+    
+    var finishDATE = standartDate(finishDate);//standart Data objects
+    var start_Day = startDATE.getDate();
+    print("##finishDATE - "+finishDATE);
+    print("##start_Day - "+ start_Day);
+    var start_Month = startDATE.getMonth();// month is in range 0...11
+    print("##start_Month - "+start_Month);
+    var start_Year = startDATE.getFullYear();
+    print("##start_Year - "+start_Year);
+
+    var last_Day = start_Day + WEEK - 1;// first week
+
+    makeWeeklyTransactions(start_Day, last_Day, start_Month, start_Year);
+    makeWeeklyTransactionsTriple(start_Day, last_Day, start_Month, start_Year);// we call this functions
+
+}    
+
+/*--------------------- this three functions run three periods of transactions - month, year, week -----------------*/
+
 //runMonthlyOneAndTwice("1/6/2016", "20/8/2016");//start date and final date - in my task 2016
 
-var thisDATE = standartDate("1/6/2016");
-print("plainDays 2010 - "+toPlainDays(thisDATE.getDate(), thisDATE.getMonth(), thisDATE.getFullYear()));
-runYearlyThreeAndSix("1/1/2016", "20/10/2017");//start date and final date - in my task 2016
+//runYearlyThreeAndSix("1/1/2016", "20/10/2017");//start date and final date - in my task 2016
+
+runweeklyOneAndThree("1/1/2010", "1/3/2010");//start date and final date - in my task 2016
 
