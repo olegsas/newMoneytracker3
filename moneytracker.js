@@ -427,7 +427,7 @@ function runYearlyThreeAndSix(startDate, finishDate){// global function runs tra
         print("cycleMonth - " + cycleMonth);//february = 1
         cycleYear = zDATE.getFullYear();
         print("cycleYear - " + cycleYear);
-        cycle_days_in_year = DaysInYear(cycleYear);// 365 or 366
+        cycle_day_in_year = DaysInYear(cycleYear);// 365 or 366
         print("##cycle_day_in_year - " + cycle_day_in_year);
 
         bufferDay = cycleDATEstart.getDate();
