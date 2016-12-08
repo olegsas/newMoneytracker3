@@ -377,6 +377,14 @@ function DaysInYear(Year){
     return SumDay;
 }
 
+function makeYearlyTransactionsTriple(start_Day, last_Day, start_Year){
+
+};
+
+function makeMonthlyTransactionsSixTimes(start_Day, last_Day, start_Year){
+
+};
+
 function runYearlyThreeAndSix(startDate, finishDate){// global function runs transaction generation
     var startDATE = standartDate(startDate);
     print("##startDATE-"+startDATE);
@@ -389,17 +397,19 @@ function runYearlyThreeAndSix(startDate, finishDate){// global function runs tra
     var start_Year = startDATE.getFullYear();
     print("##start_Year - "+start_Year);
 
-    print("##DaysInYear 2010 - "+DaysInYear(2010));
-    print("##DaysInYear 2011 - "+DaysInYear(2011));
-    print("##DaysInYear 2012 - "+DaysInYear(2012));
-    print("##DaysInYear 2013 - "+DaysInYear(2013));
-    print("##DaysInYear 2014 - "+DaysInYear(2014));
-    print("##DaysInYear 2015 - "+DaysInYear(2015));
-    print("##DaysInYear 2016 - "+DaysInYear(2016));
+    //print("##DaysInYear 2010 - "+DaysInYear(2010));
 
+    var last_Day = DaysInYear(start_Year);// it will be 365 or 366
+
+    makeYearlyTransactionsTriple(start_Day, last_Day, start_Year);
+    makeMonthlyTransactionsSixTimes(start_Day, last_Day, start_Year);// we call this functions
+    
+    var zDATE = new Date(start_Year, 0, last_Day);
+        zDATE.setDate(zDATE.getDate()+1);
+        print("### New Year = "+zDATE);// New Year
 }
 
 //runMonthlyOneAndTwice("1/6/2016", "20/8/2016");//start date and final date - in my task 2016
 
-runYearlyThreeAndSix("1/6/2016", "20/8/2016");//start date and final date - in my task 2016
+runYearlyThreeAndSix("1/1/2010", "20/8/2016");//start date and final date - in my task 2016
 
