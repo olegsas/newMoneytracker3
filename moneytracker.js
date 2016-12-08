@@ -377,16 +377,18 @@ function DaysInYear(Year){
     return SumDay;
 }
 
-function toPlainDays(anyDATA){//returns tow many days between the 1-st January and the anyDATA
+function toPlainDays(anyDate, anyMonth, anyYear){//returns tow many days between the 1-st January and the anyDATA
     // we use .getTime() method
-    var anyYear = anyDATA.getFullYear();
-    var startTime = (new Date(anyYear,1,1)).getTime();
+   // var anyYear = anyDATA.getFullYear();
+    var startTime = (new Date(anyYear,0,1)).getTime();//new year
+    var anyDATA = new Date(anyYear, anyMonth, anyDate);
     var anyTime = anyDATA.getTime();
     var deltaTIME = anyTime - startTime;
-    var plainDays = Math.floor(deltaTIME/(1000*60*60*24));
+    var plainDays = Math.floor(deltaTIME/(1000*60*60*24))+1;
     return plainDays;
 
 }
+
 
 function makeYearlyTransactionsTriple(start_Day, last_Day, start_Year){
 
@@ -402,6 +404,7 @@ function runYearlyThreeAndSix(startDate, finishDate){// global function runs tra
     
     finishDATE = standartDate(finishDate);//standart Data objects
     var start_Day = startDATE.getDate();
+    print("##finishDATE - "+finishDATE);
     print("##start_Day - "+ start_Day);
     var start_Month = startDATE.getMonth();// month is in range 0...11
     print("##start_Month - "+start_Month);
@@ -450,8 +453,8 @@ function runYearlyThreeAndSix(startDate, finishDate){// global function runs tra
         print("##cycleDATEfinish - " + cycleDATEfinish);
 
         if(cycleDATEfinish > finishDATE){
-            makeYearlyTransactionsTriple(cycleDayFirst, toPlainDays(finishDATE), cycleYear);
-            makeYearlyTransactionsSixTimes(cycleDayFirst, toPlainDays(finishDATE), cycleYear);
+            makeYearlyTransactionsTriple(cycleDayFirst, toPlainDays(finishDATE.getDate(), finishDATE.getMonth(), finishDATE.getFullYear()), cycleYear);
+            makeYearlyTransactionsSixTimes(cycleDayFirst, toPlainDays(finishDATE.getDate(), finishDATE.getMonth(), finishDATE.getFullYear()), cycleYear);
             //we are in the last short month
             //toPlainDays(anyDATA) returns how many days are between the 1-st January
             //and the anyDATA
@@ -476,6 +479,7 @@ function runYearlyThreeAndSix(startDate, finishDate){// global function runs tra
 
 //runMonthlyOneAndTwice("1/6/2016", "20/8/2016");//start date and final date - in my task 2016
 
-print("plainDays 2010 - "+toPlainDays(2010));
+var thisDATE = standartDate("1/6/2016");
+print("plainDays 2010 - "+toPlainDays(thisDATE.getDate(), thisDATE.getMonth(), thisDATE.getFullYear()));
 runYearlyThreeAndSix("1/1/2010", "20/8/2016");//start date and final date - in my task 2016
 
