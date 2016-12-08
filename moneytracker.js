@@ -391,6 +391,7 @@ function toPlainDays(anyDate, anyMonth, anyYear){//returns tow many days between
 
 
 function makeYearlyTransactionsTriple(start_Day, last_Day, start_Year){
+    print("####start_Day - "+start_Day+"####last_Day - "+last_Day+"####start_Year - "+start_Year);
 
 };
 
