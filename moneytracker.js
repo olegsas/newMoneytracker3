@@ -317,58 +317,54 @@ var cycleDATEstart,
     bufferDay,
     bufferMonth,
     bufferYear;
-do{
-    cycleDATEstart = zDATE;// first day of month
-    print("##cycleDATEstart - " + cycleDATEstart);
-    cycleDayFirst = zDATE.getDate();
-    print("cycleDay - " + cycleDayFirst);
-    cycleMonth = zDATE.getMonth();
-    print("cycleMonth - " + cycleMonth);//february = 1
-    cycleYear = zDATE.getFullYear();
-    print("cycleYear - " + cycleYear);
-    cycle_day_in_month = new Date(cycleYear, cycleMonth+1,0).getDate();//how many days in month - OK
-    print("##cycle_day_in_month - " + cycle_day_in_month);
+    do{
+        cycleDATEstart = zDATE;// first day of month
+        print("##cycleDATEstart - " + cycleDATEstart);
+        cycleDayFirst = zDATE.getDate();
+        print("cycleDay - " + cycleDayFirst);
+        cycleMonth = zDATE.getMonth();
+        print("cycleMonth - " + cycleMonth);//february = 1
+        cycleYear = zDATE.getFullYear();
+        print("cycleYear - " + cycleYear);
+        cycle_day_in_month = new Date(cycleYear, cycleMonth+1,0).getDate();//how many days in month - OK
+        print("##cycle_day_in_month - " + cycle_day_in_month);
 
-    bufferDay = cycleDATEstart.getDate();
-    bufferMonth = cycleDATEstart.getMonth();
-    bufferYear = cycleDATEstart.getFullYear();
-    
-    cycleDATEfinish = new Date(bufferYear, bufferMonth, bufferDay);//just now we have a clone
-    cycleDATEfinish.setDate(cycleDATEfinish.getDate()+cycle_day_in_month-1);
-    print("##cycleDATEfinish - " + cycleDATEfinish);
-    
-    if(cycleDATEfinish > finishDATE){
-        makeMonthlyTransactions(cycleDayFirst, finishDATE.getDate(), cycleMonth, cycleYear);
-        makeMonthlyTransactionsTwice(cycleDayFirst, finishDATE.getDate(), cycleMonth, cycleYear);
-        //we are in the last short month
-    }
-    else{
-        makeMonthlyTransactions(cycleDayFirst, cycle_day_in_month, cycleMonth, cycleYear);
-        makeMonthlyTransactionsTwice(cycleDayFirst, cycle_day_in_month, cycleMonth, cycleYear);
-        //we work with full month
-    }
-    
-    bufferDay = cycleDATEfinish.getDate();
-    bufferMonth = cycleDATEfinish.getMonth();
-    bufferYear = cycleDATEfinish.getFullYear();
-    
-    zDATE = new Date(bufferYear, bufferMonth, bufferDay);//just now we have a clone 
-    zDATE.setDate(cycleDATEfinish.getDate()+1);
-    print("##zDATE = cycleDATEfinish+1 = "+zDATE);
-    print("$$cycleDATEfinish - "+cycleDATEfinish);
-    print("$$finishDATE - "+finishDATE);
-}while(cycleDATEfinish < finishDATE);
-
-
-   
-
-
+        bufferDay = cycleDATEstart.getDate();
+        bufferMonth = cycleDATEstart.getMonth();
+        bufferYear = cycleDATEstart.getFullYear();
         
+        cycleDATEfinish = new Date(bufferYear, bufferMonth, bufferDay);//just now we have a clone
+        cycleDATEfinish.setDate(cycleDATEfinish.getDate()+cycle_day_in_month-1);
+        print("##cycleDATEfinish - " + cycleDATEfinish);
+    
+        if(cycleDATEfinish > finishDATE){
+            makeMonthlyTransactions(cycleDayFirst, finishDATE.getDate(), cycleMonth, cycleYear);
+            makeMonthlyTransactionsTwice(cycleDayFirst, finishDATE.getDate(), cycleMonth, cycleYear);
+            //we are in the last short month
+        }
+        else{
+            makeMonthlyTransactions(cycleDayFirst, cycle_day_in_month, cycleMonth, cycleYear);
+            makeMonthlyTransactionsTwice(cycleDayFirst, cycle_day_in_month, cycleMonth, cycleYear);
+            //we work with full month
+        }
+    
+        bufferDay = cycleDATEfinish.getDate();
+        bufferMonth = cycleDATEfinish.getMonth();
+        bufferYear = cycleDATEfinish.getFullYear();
         
-        
+        zDATE = new Date(bufferYear, bufferMonth, bufferDay);//just now we have a clone 
+        zDATE.setDate(cycleDATEfinish.getDate()+1);
+        print("##zDATE = cycleDATEfinish+1 = "+zDATE);
+        print("$$cycleDATEfinish - "+cycleDATEfinish);
+        print("$$finishDATE - "+finishDATE);
+    }while(cycleDATEfinish < finishDATE);
+}
 
+function runYearlyThreeAndSix(startDate, finishDate){// global function runs transaction generation
 
 }
 
-runMonthlyOneAndTwice("1/6/2016", "20/8/2016");//start date and final date - in my task 2016
+//runMonthlyOneAndTwice("1/6/2016", "20/8/2016");//start date and final date - in my task 2016
+
+runYearlyThreeAndSix("1/6/2016", "20/8/2016");//start date and final date - in my task 2016
 
