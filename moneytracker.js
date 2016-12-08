@@ -65,9 +65,9 @@ function oneDayOfUser(){// we parse all transaction list
 
 function standartDate(anyDay){// this function normalize string date into a Date object
 
-    var anyDayA = anyDay.split("/"),// we have got an array of 3 numbers in a string type
+    var anyDayA = anyDay.split("/");// we have got an array of 3 numbers in a string type
     
-        anyDATE = new Date();
+    var anyDATE = new Date();
         anyDATE.setFullYear(anyDayA[2]);// A means Array
         anyDATE.setMonth(anyDayA[1]-1);// we have months in range of 0...11
         anyDATE.setDate(anyDayA[0]);// anyDATE is in a correct format
@@ -378,6 +378,13 @@ function DaysInYear(Year){
 }
 
 function toPlainDays(anyDATA){//returns tow many days between the 1-st January and the anyDATA
+    // we use .getTime() method
+    var anyYear = anyDATA.getFullYear();
+    var startTime = (new Date(anyYear,1,1)).getTime();
+    var anyTime = anyDATA.getTime();
+    var deltaTIME = anyTime - startTime;
+    var plainDays = Math.floor(deltaTIME/(1000*60*60*24));
+    return plainDays;
 
 }
 
@@ -469,5 +476,6 @@ function runYearlyThreeAndSix(startDate, finishDate){// global function runs tra
 
 //runMonthlyOneAndTwice("1/6/2016", "20/8/2016");//start date and final date - in my task 2016
 
+print("plainDays 2010 - "+toPlainDays(2010));
 runYearlyThreeAndSix("1/1/2010", "20/8/2016");//start date and final date - in my task 2016
 
