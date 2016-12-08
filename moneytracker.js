@@ -381,7 +381,7 @@ function makeYearlyTransactionsTriple(start_Day, last_Day, start_Year){
 
 };
 
-function makeMonthlyTransactionsSixTimes(start_Day, last_Day, start_Year){
+function makeYearlyTransactionsSixTimes(start_Day, last_Day, start_Year){
 
 };
 
@@ -402,7 +402,7 @@ function runYearlyThreeAndSix(startDate, finishDate){// global function runs tra
     var last_Day = DaysInYear(start_Year);// it will be 365 or 366
 
     makeYearlyTransactionsTriple(start_Day, last_Day, start_Year);
-    makeMonthlyTransactionsSixTimes(start_Day, last_Day, start_Year);// we call this functions
+    makeYearlyTransactionsSixTimes(start_Day, last_Day, start_Year);// we call this functions
     
     var zDATE = new Date(start_Year, 0, last_Day);
         zDATE.setDate(zDATE.getDate()+1);
@@ -438,7 +438,16 @@ function runYearlyThreeAndSix(startDate, finishDate){// global function runs tra
         cycleDATEfinish.setDate(cycleDATEfinish.getDate()+cycle_day_in_year-1);
         print("##cycleDATEfinish - " + cycleDATEfinish);
 
-        /// here we do transactions
+        if(cycleDATEfinish > finishDATE){
+            makeYearlyTransactionsTriple(cycleDayFirst, /*finishDATE.getDate(),*/ cycleYear);
+            makeYearlyTransactionsSixTimes(cycleDayFirst, /*finishDATE.getDate(),*/ cycleYear);
+            //we are in the last short month
+        }
+        else{
+            makeYearlyTransactionsTriple(cycleDayFirst, cycle_day_in_year, cycleYear);
+            makeYearlyTransactionsSixTimes(cycleDayFirst, cycle_day_in_year, cycleYear);
+            //we work with full month
+        }
 
         bufferDay = cycleDATEfinish.getDate();
         bufferMonth = cycleDATEfinish.getMonth();
