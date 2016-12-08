@@ -360,6 +360,23 @@ var cycleDATEstart,
     }while(cycleDATEfinish < finishDATE);
 }
 
+function DaysInYear(Year){
+    var jan = new Date(Year,1,0).getDate();// getDay is the method to find the day of a week
+    var feb = new Date(Year,2,0).getDate();
+    var mar = new Date(Year,3,0).getDate();
+    var apr = new Date(Year,4,0).getDate();
+    var may = new Date(Year,5,0).getDate();
+    var jun = new Date(Year,6,0).getDate();
+    var jul = new Date(Year,7,0).getDate();
+    var aug = new Date(Year,8,0).getDate();
+    var sep = new Date(Year,9,0).getDate();
+    var oct = new Date(Year,10,0).getDate();
+    var nov = new Date(Year,11,0).getDate();
+    var dec = new Date(Year,12,0).getDate();
+    var SumDay = jan+feb+mar+apr+may+jun+jul+aug+sep+oct+nov+dec;
+    return SumDay;
+}
+
 function runYearlyThreeAndSix(startDate, finishDate){// global function runs transaction generation
     var startDATE = standartDate(startDate);
     print("##startDATE-"+startDATE);
@@ -371,6 +388,15 @@ function runYearlyThreeAndSix(startDate, finishDate){// global function runs tra
     print("##start_Month - "+start_Month);
     var start_Year = startDATE.getFullYear();
     print("##start_Year - "+start_Year);
+
+    print("##DaysInYear 2010 - "+DaysInYear(2010));
+    print("##DaysInYear 2011 - "+DaysInYear(2011));
+    print("##DaysInYear 2012 - "+DaysInYear(2012));
+    print("##DaysInYear 2013 - "+DaysInYear(2013));
+    print("##DaysInYear 2014 - "+DaysInYear(2014));
+    print("##DaysInYear 2015 - "+DaysInYear(2015));
+    print("##DaysInYear 2016 - "+DaysInYear(2016));
+
 }
 
 //runMonthlyOneAndTwice("1/6/2016", "20/8/2016");//start date and final date - in my task 2016
