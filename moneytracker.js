@@ -361,7 +361,16 @@ var cycleDATEstart,
 }
 
 function runYearlyThreeAndSix(startDate, finishDate){// global function runs transaction generation
-
+    var startDATE = standartDate(startDate);
+    print("##startDATE-"+startDATE);
+    
+    finishDATE = standartDate(finishDate);//standart Data objects
+    var start_Day = startDATE.getDate();
+    print("##start_Day - "+ start_Day);
+    var start_Month = startDATE.getMonth();// month is in range 0...11
+    print("##start_Month - "+start_Month);
+    var start_Year = startDATE.getFullYear();
+    print("##start_Year - "+start_Year);
 }
 
 //runMonthlyOneAndTwice("1/6/2016", "20/8/2016");//start date and final date - in my task 2016
