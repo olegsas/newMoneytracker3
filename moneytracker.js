@@ -407,6 +407,49 @@ function runYearlyThreeAndSix(startDate, finishDate){// global function runs tra
     var zDATE = new Date(start_Year, 0, last_Day);
         zDATE.setDate(zDATE.getDate()+1);
         print("### New Year = "+zDATE);// New Year
+
+    var cycleDATEstart,
+    cycleDATEfinish,
+    cycle_day_in_year,
+    cycleDay,
+    cycleMonth,
+    cycleYear,
+    bufferDay,
+    bufferMonth,
+    bufferYear;
+
+    do{
+        cycleDATEstart = zDATE;// 1 jan 2011
+        print("##cycleDATEstart - " + cycleDATEstart);
+        cycleDayFirst = zDATE.getDate();
+        print("cycleDay - " + cycleDayFirst);
+        cycleMonth = zDATE.getMonth();
+        print("cycleMonth - " + cycleMonth);//february = 1
+        cycleYear = zDATE.getFullYear();
+        print("cycleYear - " + cycleYear);
+        cycle_days_in_year = DaysInYear(cycleYear);// 365 or 366
+        print("##cycle_day_in_year - " + cycle_day_in_year);
+
+        bufferDay = cycleDATEstart.getDate();
+        bufferMonth = cycleDATEstart.getMonth();
+        bufferYear = cycleDATEstart.getFullYear();
+        
+        cycleDATEfinish = new Date(bufferYear, bufferMonth, bufferDay);//just now we have a clone
+        cycleDATEfinish.setDate(cycleDATEfinish.getDate()+cycle_day_in_year-1);
+        print("##cycleDATEfinish - " + cycleDATEfinish);
+
+        /// here we do transactions
+
+        bufferDay = cycleDATEfinish.getDate();
+        bufferMonth = cycleDATEfinish.getMonth();
+        bufferYear = cycleDATEfinish.getFullYear();
+        
+        zDATE = new Date(bufferYear, bufferMonth, bufferDay);//just now we have a clone 
+        zDATE.setDate(cycleDATEfinish.getDate()+1);
+        print("##zDATE = cycleDATEfinish+1 = "+zDATE);
+        print("$$cycleDATEfinish - "+cycleDATEfinish);
+        print("$$finishDATE - "+finishDATE);
+    }while(cycleDATEfinish < finishDATE);
 }
 
 //runMonthlyOneAndTwice("1/6/2016", "20/8/2016");//start date and final date - in my task 2016
