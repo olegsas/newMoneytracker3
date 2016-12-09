@@ -805,20 +805,23 @@ function runYearlyThreeAndSix(startDate, finishDate){// global function runs tra
 function runweeklyOneAndThree(startDate, finishDate){// global function runs transaction generation
     var startDATE = standartDate(startDate);
     print("##startDATE-"+startDATE);
-    
+    var startTimeDay = Math.floor(startDATE.getTime()/(1000*60*60*24));// we find a day since the zero point
+    print("startTimeDay = "+startTimeDay);
+    // we do not need to use start_Day, start_Month, start_Year
+    // we count days from the begining of the time;
+    // the next step we want to transform days into the data;
     var finishDATE = standartDate(finishDate);//standart Data objects
-    var start_Day = startDATE.getDate();
-    print("##finishDATE - "+finishDATE);
-    print("##start_Day - "+ start_Day);
-    var start_Month = startDATE.getMonth();// month is in range 0...11
-    print("##start_Month - "+start_Month);
-    var start_Year = startDATE.getFullYear();
-    print("##start_Year - "+start_Year);
+    var finishTimeDay = Math.floor(finishDATE.getTime()/(1000*60*60*24));
+    print("finishTimeDay = "+finishTimeDay);
 
-    var last_Day = start_Day + WEEK - 1;// first week
 
-    makeWeeklyTransactions(start_Day, last_Day, start_Month, start_Year);
-    makeWeeklyTransactionsTriple(start_Day, last_Day, start_Month, start_Year);// we call this functions
+    /*--------------------------  zDATE.setDate(zDATE.getDate()+1); --------------------------*/
+    
+    
+    var lastTimeDay = startTimeDay + WEEK - 1;// first week - we count it from the begining of the zero point
+
+    makeWeeklyTransactions(startTimeDay, lastTimeDay);
+    makeWeeklyTransactionsTriple(startTimeDay, lastTimeDay);// we call this functions for the 1-st week
 
 }    
 
@@ -828,5 +831,5 @@ function runweeklyOneAndThree(startDate, finishDate){// global function runs tra
 
 //runYearlyThreeAndSix("1/1/2016", "20/10/2017");//start date and final date - in my task 2016
 
-runweeklyOneAndThree("1/1/2010", "1/3/2010");//start date and final date - in my task 2016
+runweeklyOneAndThree("1/1/2010", "25/11/2016");//start date and final date - in my task 2016
 
