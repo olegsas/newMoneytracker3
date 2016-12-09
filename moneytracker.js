@@ -717,13 +717,45 @@ function makeYearlyTransactionsSixTimes(start_Day, last_Day, Year){
 };
 
 function makeWeeklyTransactions(startTimeDay, lastTimeDay){
-    print("##make weekly transactions - startTimeDay" + startTimeDay);
-    var newPrintDATE = new Date;
-    newPrintDATE.setTime(startTimeDay*1000*60*60*24);
+    for(i=1; i<oneDayOfUser().len+1; i++){// we check the transaction list
     
-    var newPrintDATE2 = new Date;
-    newPrintDATE2.setTime(lastTimeDay*1000*60*60*24);
-    print('##make weekly transactions - startDATE'+newPrintDATE+" and the endDATE - "+newPrintDATE2);
+    if(
+        (oneDayOfUser().Period[i] === "Week") && 
+            (oneDayOfUser().Rate[i] === 1)){
+
+             var transactionTimeDay = Math.floor(Math.random()*(lastTimeDay - startTimeDay) + startTimeDay);
+             var transaction_Date = new Date();
+             transaction_Date.setTime(ransactionTimeDay*1000*60*60*24);// Data object format
+             var transactionAmount = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount
+             var Number_of_the_name_of_transaction = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
+             var operationName =  oneDayOfUser().OperationName[i]
+            var transactionNameH = db.names.find({"transaction":oneDayOfUser().OperationName[i]},{"names":1,_id:0}).toArray();
+            var transactionNameOnly = transactionNameH[0].names[Number_of_the_name_of_transaction];
+            var transactionType = oneDayOfUser().Type[i];
+            var transactionCurrency = oneDayOfUser().Currency[i];
+            var transactionAccount = oneDayOfUser().Account[i];
+
+            if(transaction_Date >= DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date,transactionType, operationName, transactionNameOnly, 
+                             transactionAmount, transactionCurrency, transactionAccount)
+                }
+            }
+
+            if(transaction_Date < DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date,transactionType, operationName, transactionNameOnly, 
+                             transactionAmount, transactionCurrency, transactionAccount)
+                }
+            }
+
+
+
+            }          
+        
+    
+}
+    
 
 }
 
@@ -811,26 +843,18 @@ function runYearlyThreeAndSix(startDate, finishDate){// global function runs tra
 
 function runweeklyOneAndThree(startDate, finishDate){// global function runs transaction generation
     var startDATE = standartDate(startDate);
-    print("##startDATE-"+startDATE);
     var startTimeDay = Math.floor(startDATE.getTime()/(1000*60*60*24));// we find a day since the zero point
-    print("startTimeDay = "+startTimeDay);
     // we do not need to use start_Day, start_Month, start_Year
     // we count days from the begining of the time;
     // the next step we want to transform days into the data;
     var finishDATE = standartDate(finishDate);//standart Data objects
     var finishTimeDay = Math.floor(finishDATE.getTime()/(1000*60*60*24));
-    print("finishTimeDay = "+finishTimeDay);
-
-
-    /*--------------------------  zDATE.setDate(zDATE.getDate()+1); --------------------------*/
-    
     
     var lastTimeDay = startTimeDay + WEEK - 1;// first week - we count it from the begining of the zero point
 
-    print("##lastTimeDay - "+lastTimeDay);
     makeWeeklyTransactions(startTimeDay, lastTimeDay);
     makeWeeklyTransactionsTriple(startTimeDay, lastTimeDay);// we call this functions for the 1-st week
-    var counter = 1;//for the debugging
+    
     var zTimeDay = lastTimeDay + 1;//the first day of the next week
 
     var cycleTimeDaystart;
@@ -844,14 +868,10 @@ function runweeklyOneAndThree(startDate, finishDate){// global function runs tra
             makeWeeklyTransactionsTriple(cycleTimeDayStart, cycleTimeDayFinish);
             // we are in a full-time week
             // we ignore short last week
-            counter++;
-            print("counter = "+counter);
         }
 
         zTimeDay = cycleTimeDayFinish + 1; // 1-st day of the next next week
-
-
-
+    
     }while(cycleTimeDayFinish < finishTimeDay);
 
 }    
