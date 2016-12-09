@@ -716,11 +716,15 @@ function makeYearlyTransactionsSixTimes(start_Day, last_Day, Year){
 	}
 };
 
-function makeWeeklyTransactions(start_Day, last_Day, start_Month, start_Year){
+function makeWeeklyTransactions(startTimeDay, lastTimeDay){
+    print("##make weekly transactions - startTimeDay" + startTimeDay);
+    var newPrintDATE = new Date;
+    newPrintDATE.setTime(startTimeDay*1000*60*60*24);
+    print('##make weekly transactions - startDATE'+newPrintDATE);
 
 }
 
-function makeWeeklyTransactionsTriple(start_Day, last_Day, start_Month, start_Year){
+function makeWeeklyTransactionsTriple(startTimeDay, lastTimeDay){
 
 }
 
@@ -830,6 +834,8 @@ function runweeklyOneAndThree(startDate, finishDate){// global function runs tra
     do{
         cycleTimeDayStart = zTimeDay;// 1-st day of the next week
         cycleTimeDayFinish = cycleTimeDayStart + WEEK - 1;// last day of the next week
+
+        print("##cycleTimeDayFinish - " + cycleTimeDayFinish);
 
         ///-------------- we make transactions ----------------------
 
