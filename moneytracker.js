@@ -720,7 +720,10 @@ function makeWeeklyTransactions(startTimeDay, lastTimeDay){
     print("##make weekly transactions - startTimeDay" + startTimeDay);
     var newPrintDATE = new Date;
     newPrintDATE.setTime(startTimeDay*1000*60*60*24);
-    print('##make weekly transactions - startDATE'+newPrintDATE);
+    
+    var newPrintDATE2 = new Date;
+    newPrintDATE2.setTime(lastTimeDay*1000*60*60*24);
+    print('##make weekly transactions - startDATE'+newPrintDATE+" and the endDATE - "+newPrintDATE2);
 
 }
 
@@ -824,6 +827,7 @@ function runweeklyOneAndThree(startDate, finishDate){// global function runs tra
     
     var lastTimeDay = startTimeDay + WEEK - 1;// first week - we count it from the begining of the zero point
 
+    print("##lastTimeDay - "+lastTimeDay);
     makeWeeklyTransactions(startTimeDay, lastTimeDay);
     makeWeeklyTransactionsTriple(startTimeDay, lastTimeDay);// we call this functions for the 1-st week
 
@@ -835,7 +839,10 @@ function runweeklyOneAndThree(startDate, finishDate){// global function runs tra
         cycleTimeDayStart = zTimeDay;// 1-st day of the next week
         cycleTimeDayFinish = cycleTimeDayStart + WEEK - 1;// last day of the next week
 
-        print("##cycleTimeDayFinish - " + cycleTimeDayFinish);
+        
+        
+        makeWeeklyTransactions(cycleTimeDayStart, cycleTimeDayFinish);
+        makeWeeklyTransactionsTriple(cycleTimeDayStart, cycleTimeDayFinish);// we call this functions for the 1-st week
 
         ///-------------- we make transactions ----------------------
 
@@ -853,5 +860,5 @@ function runweeklyOneAndThree(startDate, finishDate){// global function runs tra
 
 //runYearlyThreeAndSix("1/1/2016", "20/10/2017");//start date and final date - in my task 2016
 
-runweeklyOneAndThree("1/1/2010", "25/2/2010");//start date and final date - in my task 2016
+runweeklyOneAndThree("1/1/2010", "25/11/2016");//start date and final date - in my task 2016
 
