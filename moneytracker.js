@@ -825,21 +825,19 @@ function runweeklyOneAndThree(startDate, finishDate){// global function runs tra
 
     var zTimeDay = lastTimeDay + 1;//the first day of the next week
 
-    var cycleDATEstart,
-    cycleDATEfinish,
-    cycle_day_in_year,
-    cycleDay,
-    cycleMonth,
-    cycleYear,
-    bufferDay,
-    bufferMonth,
-    bufferYear;
-
+    var cycleTimeDaystart;
+    
     do{
+        cycleTimeDayStart = zTimeDay;// 1-st day of the next week
+        cycleTimeDayFinish = cycleTimeDayStart + WEEK - 1;// last day of the next week
+
+        ///-------------- we make transactions ----------------------
+
+        zTimeDay = cycleTimeDayFinish + 1; // 1-st day of the next next week
 
 
 
-    }while()
+    }while(cycleTimeDayFinish < finishTimeDay);
 
 }    
 
@@ -849,5 +847,5 @@ function runweeklyOneAndThree(startDate, finishDate){// global function runs tra
 
 //runYearlyThreeAndSix("1/1/2016", "20/10/2017");//start date and final date - in my task 2016
 
-runweeklyOneAndThree("1/1/2010", "25/11/2016");//start date and final date - in my task 2016
+runweeklyOneAndThree("1/1/2010", "25/2/2010");//start date and final date - in my task 2016
 
