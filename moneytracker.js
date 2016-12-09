@@ -823,6 +823,24 @@ function runweeklyOneAndThree(startDate, finishDate){// global function runs tra
     makeWeeklyTransactions(startTimeDay, lastTimeDay);
     makeWeeklyTransactionsTriple(startTimeDay, lastTimeDay);// we call this functions for the 1-st week
 
+    var zTimeDay = lastTimeDay + 1;//the first day of the next week
+
+    var cycleDATEstart,
+    cycleDATEfinish,
+    cycle_day_in_year,
+    cycleDay,
+    cycleMonth,
+    cycleYear,
+    bufferDay,
+    bufferMonth,
+    bufferYear;
+
+    do{
+
+
+
+    }while()
+
 }    
 
 /*--------------------- this three functions run three periods of transactions - month, year, week -----------------*/
