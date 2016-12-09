@@ -830,7 +830,7 @@ function runweeklyOneAndThree(startDate, finishDate){// global function runs tra
     print("##lastTimeDay - "+lastTimeDay);
     makeWeeklyTransactions(startTimeDay, lastTimeDay);
     makeWeeklyTransactionsTriple(startTimeDay, lastTimeDay);// we call this functions for the 1-st week
-
+    var counter = 1;//for the debugging
     var zTimeDay = lastTimeDay + 1;//the first day of the next week
 
     var cycleTimeDaystart;
@@ -839,12 +839,14 @@ function runweeklyOneAndThree(startDate, finishDate){// global function runs tra
         cycleTimeDayStart = zTimeDay;// 1-st day of the next week
         cycleTimeDayFinish = cycleTimeDayStart + WEEK - 1;// last day of the next week
 
-        
-        
-        makeWeeklyTransactions(cycleTimeDayStart, cycleTimeDayFinish);
-        makeWeeklyTransactionsTriple(cycleTimeDayStart, cycleTimeDayFinish);// we call this functions for the 1-st week
-
-        ///-------------- we make transactions ----------------------
+        if(cycleTimeDayFinish <= finishTimeDay){
+            makeWeeklyTransactions(cycleTimeDayStart, cycleTimeDayFinish);
+            makeWeeklyTransactionsTriple(cycleTimeDayStart, cycleTimeDayFinish);
+            // we are in a full-time week
+            // we ignore short last week
+            counter++;
+            print("counter = "+counter);
+        }
 
         zTimeDay = cycleTimeDayFinish + 1; // 1-st day of the next next week
 
