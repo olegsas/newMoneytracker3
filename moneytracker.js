@@ -753,7 +753,80 @@ function makeWeeklyTransactions(startTimeDay, lastTimeDay){
 }
 
 function makeWeeklyTransactionsTriple(startTimeDay, lastTimeDay){
+    for(i=1; i<oneDayOfUser().len+1; i++){// we check the transaction list
+    	
+    	if(
+        	(oneDayOfUser().Period[i] === "Week") && 
+            (oneDayOfUser().Rate[i] === 3)){
 
+            var transactionTimeDays = makeThreeRandom(startTimeDay, lastTimeDay);// 
+            // we have transactionTimeDays[0] to transactionTimeDays[2];
+            var transaction_Date1 = new Date();
+            transaction_Date1.setTime(transactionTimeDays[0]*1000*60*60*24);// Data object format
+            var transaction_Date2 = new Date();
+            transaction_Date2.setTime(transactionTimeDays[1]*1000*60*60*24);// Data object format
+            var transaction_Date3 = new Date();
+            transaction_Date3.setTime(transactionTimeDays[2]*1000*60*60*24);// Data object format
+            // we have transaction_Date1...transaction_Date3
+
+            var transactionAmount1 = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount
+            var transactionAmount2 = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount
+            var transactionAmount3 = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount
+            var Number_of_the_name_of_transaction1 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
+            var Number_of_the_name_of_transaction2 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
+            var Number_of_the_name_of_transaction3 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
+            var operationName =  oneDayOfUser().OperationName[i]
+            var transactionNameH = db.names.find({"transaction":oneDayOfUser().OperationName[i]},{"names":1,_id:0}).toArray();
+            var transactionNameOnly1 = transactionNameH[0].names[Number_of_the_name_of_transaction1];
+            var transactionNameOnly2 = transactionNameH[0].names[Number_of_the_name_of_transaction2];
+            var transactionNameOnly3 = transactionNameH[0].names[Number_of_the_name_of_transaction3];
+            var transactionType = oneDayOfUser().Type[i];
+            var transactionCurrency = oneDayOfUser().Currency[i];
+            var transactionAccount = oneDayOfUser().Account[i];
+
+            if(transaction_Date1 >= DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date1,transactionType, operationName, transactionNameOnly1, 
+                             transactionAmount1, transactionCurrency, transactionAccount)
+                }
+            }
+
+            if(transaction_Date1 < DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date1,transactionType, operationName, transactionNameOnly1, 
+                             transactionAmount1, transactionCurrency, transactionAccount)
+                }
+            }
+
+            if(transaction_Date2 >= DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date2,transactionType, operationName, transactionNameOnly2, 
+                             transactionAmount2, transactionCurrency, transactionAccount)
+                }
+            }
+
+            if(transaction_Date2 < DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date2,transactionType, operationName, transactionNameOnly2, 
+                             transactionAmount2, transactionCurrency, transactionAccount)
+                }
+            }
+
+            if(transaction_Date3 >= DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date3,transactionType, operationName, transactionNameOnly3, 
+                             transactionAmount3, transactionCurrency, transactionAccount)
+                }
+            }
+
+            if(transaction_Date3 < DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transaction_Date3,transactionType, operationName, transactionNameOnly3, 
+                             transactionAmount3, transactionCurrency, transactionAccount)
+                }
+            }
+        }          
+	}
 }
 
 function runYearlyThreeAndSix(startDate, finishDate){// global function runs transaction generation
