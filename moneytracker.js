@@ -944,9 +944,9 @@ function runweeklyOneAndThree(startDate, finishDate){// global function runs tra
 
 /*--------------------- this three functions run three periods of transactions - month, year, week -----------------*/
 
-//runMonthlyOneAndTwice("1/6/2016", "20/8/2016");//start date and final date - in my task 2016
+runMonthlyOneAndTwice("1/6/2016", "20/8/2016");//start date and final date - in my task 2016
 
-//runYearlyThreeAndSix("1/1/2016", "20/10/2017");//start date and final date - in my task 2016
+runYearlyThreeAndSix("1/1/2016", "20/10/2017");//start date and final date - in my task 2016
 
 runweeklyOneAndThree("1/1/2010", "25/11/2016");//start date and final date - in my task 2016
 
