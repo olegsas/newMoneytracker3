@@ -719,16 +719,16 @@ function makeYearlyTransactionsSixTimes(start_Day, last_Day, Year){
 function makeWeeklyTransactions(startTimeDay, lastTimeDay){
     for(i=1; i<oneDayOfUser().len+1; i++){// we check the transaction list
     
-    if(
-        (oneDayOfUser().Period[i] === "Week") && 
+    	if(
+        	(oneDayOfUser().Period[i] === "Week") && 
             (oneDayOfUser().Rate[i] === 1)){
 
-             var transactionTimeDay = Math.floor(Math.random()*(lastTimeDay - startTimeDay) + startTimeDay);
-             var transaction_Date = new Date();
-             transaction_Date.setTime(ransactionTimeDay*1000*60*60*24);// Data object format
-             var transactionAmount = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount
-             var Number_of_the_name_of_transaction = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
-             var operationName =  oneDayOfUser().OperationName[i]
+            var transactionTimeDay = Math.floor(Math.random()*(lastTimeDay - startTimeDay) + startTimeDay);
+            var transaction_Date = new Date();
+            transaction_Date.setTime(transactionTimeDay*1000*60*60*24);// Data object format
+            var transactionAmount = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount
+            var Number_of_the_name_of_transaction = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
+            var operationName =  oneDayOfUser().OperationName[i]
             var transactionNameH = db.names.find({"transaction":oneDayOfUser().OperationName[i]},{"names":1,_id:0}).toArray();
             var transactionNameOnly = transactionNameH[0].names[Number_of_the_name_of_transaction];
             var transactionType = oneDayOfUser().Type[i];
@@ -748,15 +748,8 @@ function makeWeeklyTransactions(startTimeDay, lastTimeDay){
                              transactionAmount, transactionCurrency, transactionAccount)
                 }
             }
-
-
-
-            }          
-        
-    
-}
-    
-
+        }          
+	}
 }
 
 function makeWeeklyTransactionsTriple(startTimeDay, lastTimeDay){
